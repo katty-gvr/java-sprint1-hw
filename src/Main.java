@@ -11,8 +11,19 @@ public class Main {
             if (userInput == 1) {
                 askMonth();
                 int userMonthNumber = scanner.nextInt();
+
+                while (userMonthNumber < 0 || userMonthNumber > 11  ) {
+                    System.out.println("Неправильный ввод месяца. Повторите ввод еще раз.");
+                    userMonthNumber = scanner.nextInt();
+                }
+
                 System.out.println("Введите номер дня, начиная с нуля");
                 int userDayNumber = scanner.nextInt();
+                while (userDayNumber < 0 || userDayNumber > 29  ) {
+                    System.out.println("Неправильный ввод дня. Повторите ввод еще раз.");
+                    userDayNumber = scanner.nextInt();
+                }
+
                 System.out.println("Введите количество пройденных шагов");
                 int userStepsCount = scanner.nextInt();
                 if (userStepsCount < 0) {
@@ -24,24 +35,27 @@ public class Main {
             } else if (userInput == 2) {
                 askMonth();
                 int userMonthNumber = scanner.nextInt();
-
-                int[] userStepsCountOfMonth = stepTracker.getSteps(userMonthNumber);
-                for (int i = 0; i < 30; i++) {
-                    System.out.println(i + " день: " + userStepsCountOfMonth[i]);
+                while (userMonthNumber < 0 || userMonthNumber > 11  ) {
+                    System.out.println("Неправильный ввод месяца. Повторите ввод еще раз.");
+                    userMonthNumber = scanner.nextInt();
                 }
-                System.out.println("Общее количество шагов " +
-                        stepTracker.getSumOfStepsOfMonth(userMonthNumber));
-                System.out.println("Максимальное количество пройденных шагов " +
-                        stepTracker.getMaxStepsOfMonth(userMonthNumber));
-                System.out.println("Среднее количество шагов в месяц " +
-                        stepTracker.getAverageStepsOfMonth(userMonthNumber));
-                System.out.println("Общая дистанция - " +
-                        stepTracker.getDistanceInKmOfMonth(userMonthNumber)
-                        + " км ");
-                System.out.println("Количество сожженных килокалорий - " +
-                        stepTracker.getCalories(userMonthNumber));
-                System.out.println("Ваша лучшая серия - выполнить цель по шагам удалось " +
-                        stepTracker.theBestSeries(userMonthNumber) + " дней подряд.");
+                    int[] userStepsCountOfMonth = stepTracker.getSteps(userMonthNumber);
+                    for (int i = 0; i < 30; i++) {
+                        System.out.println(i + " день: " + userStepsCountOfMonth[i]);
+                    }
+                    System.out.println("Общее количество шагов " +
+                            stepTracker.getSumOfStepsOfMonth(userMonthNumber));
+                    System.out.println("Максимальное количество пройденных шагов " +
+                            stepTracker.getMaxStepsOfMonth(userMonthNumber));
+                    System.out.println("Среднее количество шагов в месяц " +
+                            stepTracker.getAverageStepsOfMonth(userMonthNumber));
+                    System.out.println("Общая дистанция - " +
+                            stepTracker.getDistanceInKmOfMonth(userMonthNumber)
+                            + " км ");
+                    System.out.println("Количество сожженных килокалорий - " +
+                            stepTracker.getCalories(userMonthNumber));
+                    System.out.println("Ваша лучшая серия - выполнить цель по шагам удалось " +
+                            stepTracker.theBestSeries(userMonthNumber) + " дней подряд.");
 
             } else if (userInput == 3) {
                 System.out.println("Сейчас Ваша цель - " + stepTracker.stepGoal +
@@ -52,6 +66,8 @@ public class Main {
             } else if (userInput == 0) {
                 System.out.println("Программа завершена");
                 break;
+            } else {
+                System.out.println("Извините, такой команды пока нет.");
             }
         }
     }
